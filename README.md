@@ -10,3 +10,13 @@ debouncing with 200ms
 - cache:
   time complexity to search in array = o(n)
   time complexity to search in object = o(n)
+
+<!-- live chat >>>>infinte Scroll >>>> pagination -->
+
+- Get data live
+
+  - web sockets : 2 way connection : e.g : Trading, whatsapp
+  - API Polling(long polling) : e.g : gmail, crickbuzz
+
+- Update the UI layer
+  - cleaning up the pages deleting the chat
