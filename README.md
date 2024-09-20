@@ -1,3 +1,13 @@
+- This Project is not for better UI but it is for better Data layer and UI layer matching .... so user gets a better performance when he is using that.
+
+- Search functionality
+
+  - it uses a Debouncing to getting a suggestion when typing the search box
+
+- Live Chats
+  - In that we use Long polling to fetch the chats which are new present in the api
+  - but after a certain limit this chat will we automatically delete from the dom which can help to the do not crash the web page
+
 Debouncing :
 typing slow = 200ms
 typing slow = 30ms
