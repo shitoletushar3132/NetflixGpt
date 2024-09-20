@@ -1,4 +1,4 @@
-- This Project is not for better UI but it is for better Data layer and UI layer matching .... so user gets a better performance when he is using that.
+- This Project is not more focus on better UI but it is for better Data layer and UI layer matching .... so user gets a better performance when he is using that.
 
 - Search functionality
 
