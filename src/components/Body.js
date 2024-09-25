@@ -8,6 +8,7 @@ const Body = () => {
   return (
     <div>
       <Header />
+
       <div className="flex h-screen ">
         <Sidebar />
         <Outlet />

@@ -4,8 +4,8 @@ import VideoContainer from "./VideoContainer";
 
 const MainContainer = () => {
   return (
-    <div className="h-screen">
-      {/* <ButtonList /> */}
+    <div className="h-screen w-screen">
+      <ButtonList />
       <VideoContainer />
     </div>
   );
