@@ -12,9 +12,9 @@ const LiveChat = () => {
   const chatMessages = useSelector((store) => store.chat.messages);
   const [liveMessage, setLiveMessage] = useState("");
 
+  // Simulate receiving random messages every 1.5 seconds
   useEffect(() => {
-    const i = setInterval(() => {
-      // API Polling
+    const intervalId = setInterval(() => {
       dispatch(
         addMessage({
           name: generateRandomName(),
@@ -23,34 +23,42 @@ const LiveChat = () => {
       );
     }, 1500);
 
-    return () => clearInterval(i);
-  }, []);
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (liveMessage.trim() === "") return;
+
+    dispatch(addMessage({ name: "Tushar Shitole", message: liveMessage }));
+    setLiveMessage("");
+  };
 
   return (
     <>
-      <div className="p-2 border w-full h-full border-black bg-slate-100 rounded-t-lg overflow-x-hidden overflow-y-scroll .scrollbar-custom flex flex-col-reverse">
+      {/* Chat Messages Container */}
+      <div className="p-2 border w-full h-[250px] md:h-[500px] border-black bg-slate-100 rounded-t-lg overflow-y-scroll flex flex-col-reverse">
         {chatMessages.map((c, index) => (
           <ChatMessage key={index} name={c.name} message={c.message} />
         ))}
       </div>
+
+      {/* Input Section */}
       <form
-        className="w-full p-2 border border-black rounded-b-lg flex items-center"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setLiveMessage("");
-          dispatch(
-            addMessage({ name: "Tushar shitole", message: liveMessage })
-          );
-        }}
+        className="w-full p-2 border border-black rounded-b-lg flex items-center bg-white"
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
-          className="w-full border border-gray-400 px-2 outline-none text-gray-600 py-1 rounded-lg"
-          placeholder="chat..."
+          className="w-full border border-gray-400 px-2 py-1 outline-none text-gray-600 rounded-lg"
+          placeholder="Type a message..."
           value={liveMessage}
           onChange={(e) => setLiveMessage(e.target.value)}
         />
-        <button className="border mx-2 border-gray-400 bg-green-200 rounded-full px-4  text-lg">
+        <button
+          type="submit"
+          className="ml-2 bg-green-200 border border-gray-400 px-4 py-1 rounded-full text-lg hover:bg-green-300"
+        >
           📩
         </button>
       </form>

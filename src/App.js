@@ -4,12 +4,14 @@ import Header from "./components/Header";
 import "./index.css";
 import appStore from "./store/app.store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainContainer from "./components/MainContainer";
-import WatchPage from "./components/WatchPage";
+// import MainContainer from "./components/MainContainer";
+// import WatchPage from "./components/WatchPage";
 import SearchResult from "./components/SearchResult";
 import Demo from "./components/Demo";
 import Demo2 from "./components/Demo2";
-
+import { lazy, Suspense } from "react";
+const MainContainer = lazy(() => import("./components/MainContainer"));
+const WatchPage = lazy(() => import("./components/WatchPage"));
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -17,15 +19,27 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <MainContainer />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <MainContainer />
+          </Suspense>
+        ),
       },
       {
         path: "watch",
-        element: <WatchPage />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <WatchPage />
+          </Suspense>
+        ),
       },
       {
         path: "results",
         element: <SearchResult />,
+      },
+      {
+        path: "demo",
+        element: <Demo />,
       },
     ],
   },
